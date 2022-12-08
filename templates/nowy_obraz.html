@@ -1,0 +1,14 @@
+{% extends 'main.html' %}
+{% load bootstrap %}
+{% block tytul %} Nowy obraz {% endblock %}
+{% block strona %}
+<div class="card" style="padding: 10px; margin:10px 10px; background-color: #f8f9fa;">
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+            {%csrf_token%}
+            {{form|bootstrap}}
+            <button type="submit">dodaj</button>
+        </form>
+    </div>
+</div>
+{% endblock%}

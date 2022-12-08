@@ -1,0 +1,67 @@
+{% extends 'main.html' %}
+{% block tytul %} Gallery {% endblock %}
+{% load static %} 
+{% block banner-slider %}
+
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="10000">
+        <img src="{% static 'images\banner\bannersize-w.jpg' %}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h4>Piękne obrazy na wyciągnięcie ręki</h4>
+            </div>
+      </div>
+      <div class="carousel-item" data-bs-interval="10000">
+        <img src="{% static 'images\banner\bannersize-w2.jpg' %}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h4>Kupuj i sprzedawaj dzieła sztuki</h4>
+            </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}
+{% block strona %}
+<div class="spacer" style="padding:10px;"></div>
+<div class="Powitanie" style="margin: auto; text-align: center;">
+    <p style="color: rgb(0, 0, 0);"> Witaj {{ user.username }} </p>
+        {% if user.is_authenticated %}
+    
+          <a href="{% url 'Logout' %}" class="btn btn-danger" >Logout</a>
+          <a href="{% url 'nowy' %}" class="btn btn-primary" >Dodaj obraz</a>
+
+        
+        {% else %}
+          
+        <a href="{% url 'Login' %}" class="btn btn-primary" >Login</a>
+        <a href="{% url 'Register' %}" class="btn btn-primary" >Register</a>
+        
+        {% endif %}
+    </div>        
+<div class="spacer" style="padding:10px; clear: both;"></div>
+<hr>
+<br>
+<div class="kontent_glowny">    
+{% for Obraz in Obrazy %}
+        <div class="card" style="width: 18rem; height: 600px; margin: 10px; float: left; background-color: #f8f9fa; border: 5px double #70493d;">
+            {% if Obraz.grafika %}
+            <a href="{% url 'opis' Obraz.id %}"><img src="{{ Obraz.grafika.url }}" class="card-img-top" alt="..."></a>
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title">{{Obraz}}</h5>
+              <p class="card-text">{{Obraz.cena}} zł</p>
+              <p class="card-text">Autor: {{Obraz.wlasciciel}}</p>
+              <a href="{% url 'opis' Obraz.id %}" class="btn btn-success">Kup</a>
+              {% if user.is_authenticated %}
+                {% if request.user == Obraz.wlasciciel %}
+                    <a href="{% url 'edytuj' Obraz.id %}" class="btn btn-primary">edytuj</a>
+                    <a href="{% url 'usun' Obraz.id %}" class="btn btn-primary">usuń</a>
+                {% endif %}
+              {% endif %}
+            </div>
+          </div>
+        </div> 
+    {% endfor %}    
+
+{% endblock %}
