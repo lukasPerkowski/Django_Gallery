@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
-from .models import Obraz #Zamowienie
+from .models import Obraz  #Zamowienie
 from .forms import ObrazForm, CreateUserForm, EditUserForm #ZamowienieForm
 
 
@@ -66,9 +66,10 @@ def RegisterPage(request):
 
 def opisObrazu(request,id):
     
-    obraz = get_object_or_404(Obraz, pk=id)  
+    obraz = get_object_or_404(Obraz, pk=id) 
+ 
 
-    return render(request, 'opis.html', {'obraz':obraz}) 
+    return render(request, 'opis.html', {'obraz':obraz }) 
 
 @login_required(login_url='Login')
 def profileView(request):
@@ -84,7 +85,8 @@ class editProfile(generic.UpdateView):
     
     def get_object(self):
         return self.request.user
-    
+
+  
     
 
 

@@ -3,7 +3,7 @@
 {% load static %} 
 {% block strona %}
 {% if obraz.grafika %}
-<div class="card mb-3" style="max-width: 100%; margin: 10px; background-color: #f8f9fa;">
+<div class="card mb-3" style="margin: 10px; background-color: #f8f9fa;">
     <div class="row g-0">
       <div class="col-md-4">
         <img src="{{ obraz.grafika.url }}" class="img-fluid rounded-start" alt="image">
@@ -11,7 +11,7 @@
       <div class="col-md-8">
         <div class="card-body">
           <h5 class="card-title">{{obraz}}</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          <p class="card-text">{{obraz.opis}}</p>
           <p class="card-text"><small class="text-muted">{{obraz.cena}}</small></p>
           <a href="" class="btn btn-success">Kup</a>
         </div>
@@ -19,4 +19,9 @@
     </div>
   </div>
 {% endif %}
+
+<div class="p-10 lg:p-20 text-center">
+  <h1 class="text-3xl lg:text-6xl text-white">{{ obraz }}</h1>
+</div>
+
 {% endblock %}

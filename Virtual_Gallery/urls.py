@@ -1,5 +1,5 @@
 from django.urls import path
-from Virtual_Gallery.views import glownaObrazy, nowyObraz, edytujObraz, usunObraz, opisObrazu, profileView #zlozenieZamowienia
+from Virtual_Gallery.views import *
 
 urlpatterns = [
     path('', glownaObrazy, name='glowna'),

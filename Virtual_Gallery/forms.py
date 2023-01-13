@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class ObrazForm(ModelForm):
     class Meta:
         model = Obraz
-        fields = ['grafika','tytul','cena']
+        fields = ['grafika','tytul','cena', 'opis']
 
 class CreateUserForm(UserCreationForm):
     class Meta:
@@ -17,7 +17,7 @@ class CreateUserForm(UserCreationForm):
 class EditUserForm(UserChangeForm):
     class Meta:
         model = User
-        fields = ['username', 'password', 'email']        
+        fields = ['username', 'email']        
 
 
 """""
