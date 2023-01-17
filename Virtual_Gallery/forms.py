@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Obraz #Zamowienie
+from .models import Obraz, Wiadomosc
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 
@@ -19,6 +19,10 @@ class EditUserForm(UserChangeForm):
         model = User
         fields = ['username', 'email']        
 
+class WiadomoscForm(ModelForm):
+    class Meta:
+        model = Wiadomosc
+        fields = ['imie', 'wiadomosc']
 
 """""
 class ZamowienieForm(ModelForm):

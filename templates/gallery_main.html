@@ -30,7 +30,6 @@
     <p style="color: rgb(0, 0, 0);"> Witaj {{ user.username }} </p>
         {% if user.is_authenticated %}
     
-          <a href="{% url 'Logout' %}" class="btn btn-danger" >Logout</a>
           <a href="{% url 'nowy' %}" class="btn btn-primary" >Dodaj obraz</a>
           
         
@@ -51,15 +50,15 @@
       <div class="row" >
         {% for Obraz in Obrazy %}
         <div class="col-lg-3 col-md-4" style="margin-top: 10px;">
-          <a href="{% url 'opis' Obraz.id %}" ><img class="img-thumbnail" src="{{ Obraz.grafika.url }}" style="border: 5px double #70493d;" ></a>
+          <a href="{% url 'opis' Obraz.id %}" ><img class="img-thumbnail" src="{{ Obraz.grafika.url }}" ></a>
           <div class="box-element product" style="padding: 5px; margin: 5px;">
             <h6><strong>{{Obraz}}</strong></h6>
             <hr>
     
-            <button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+            <a class="btn btn-outline-secondary add-btn update-cart" href="{% url 'opis' Obraz.id %}">Zaproponuj cenę</a>
             
-            <a class="btn btn-outline-success" href="{% url 'opis' Obraz.id %}">View</a>
-            <h5 style="display: inline-block; float: right"><strong>${{Obraz.cena}}</strong></h5>
+            <a class="btn btn-outline-success" href="{% url 'opis' Obraz.id %}" style="display: inline-block; float: right">Zobacz</a>
+            
     
           </div>
         </div>
@@ -68,4 +67,4 @@
     </div>
   {% endblock %}
 
-  
+  style="border: 5px double #70493d;"

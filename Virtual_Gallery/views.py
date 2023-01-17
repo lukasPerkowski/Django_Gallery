@@ -2,13 +2,13 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
-from .models import Obraz  #Zamowienie
-from .forms import ObrazForm, CreateUserForm, EditUserForm #ZamowienieForm
+from .models import Obraz, Wiadomosc  #Zamowienie
+from .forms import ObrazForm, CreateUserForm, EditUserForm, WiadomoscForm
 
 
 
 def glownaObrazy(request):
-    wszystkie = Obraz.objects.all()
+    wszystkie = Obraz.objects.all().order_by('-id')
     
     return render(request, 'gallery_main.html',{'Obrazy':wszystkie})
 
@@ -67,9 +67,18 @@ def RegisterPage(request):
 def opisObrazu(request,id):
     
     obraz = get_object_or_404(Obraz, pk=id) 
+    form = WiadomoscForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.autor = obraz.wlasciciel
+            obj.obraz = obraz
+            obj.save()
+            form.save()
+            return redirect('glowna')
  
 
-    return render(request, 'opis.html', {'obraz':obraz }) 
+    return render(request, 'opis.html', {'obraz':obraz, 'form':form}) 
 
 @login_required(login_url='Login')
 def profileView(request):
@@ -86,10 +95,20 @@ class editProfile(generic.UpdateView):
     def get_object(self):
         return self.request.user
 
-  
+
+def wiadomosciView(request):
+    wiadmosci = Wiadomosc.objects.filter(autor = request.user)
     
+    return render(request, 'wiadomosci.html', {'wiadomosci':wiadmosci})
 
+def usunWiadomosc(request,id):
+    wiadomosc = get_object_or_404(Wiadomosc, pk=id)
 
+    if request.method == "POST":
+        wiadomosc.delete()
+        return redirect('glowna')    
+
+    return render(request, 'usun_wiadomosc.html', {'wiadomosc':wiadomosc})
 
 
 

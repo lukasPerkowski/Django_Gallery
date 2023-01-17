@@ -1,6 +1,7 @@
 {% extends 'main.html' %}
 {% block tytul %} Opis {% endblock %}
-{% load static %} 
+{% load static %}
+{% load bootstrap %} 
 {% block strona %}
 {% if obraz.grafika %}
 <div class="card mb-3" style="margin: 10px; background-color: #f8f9fa;">
@@ -24,4 +25,14 @@
   <h1 class="text-3xl lg:text-6xl text-white">{{ obraz }}</h1>
 </div>
 
+<div class="card" style="padding: 10px; margin:10px 10px; background-color: #f8f9fa;">
+  <div class="card-body">
+      <form method="post" enctype="multipart/form-data">
+          {%csrf_token%}
+          <h1>Podoba ci się ten obraz - {{ obraz }}? Napisz do autora!</h1>
+          {{form|bootstrap}}
+          <button type="submit">dodaj</button>
+      </form>
+  </div>
+</div>
 {% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+{% block tytul %} Wiadomosci {% endblock %}
+{% load static %}
+{% load bootstrap %} 
+{% block strona %}
+<br>
+<h1 style="text-align: center;">Twoje wiadomsci:</h1>
+<br>
+<div class="container" style="background-color: #f6f8fa; padding: 10px;">
+    <div class="row" >
+        <div class="col">
+            {% for Wiadomosc in wiadomosci %}
+            <div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
+                <div class="card-header">Obraz: {{Wiadomosc.obraz}}</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Autor: {{Wiadomosc.imie}}</h5>
+                        <p class="card-text"> "{{Wiadomosc.wiadomosc}}"</p>
+                        <a href="{% url 'usun_wiadomosc' Wiadomosc.id %}" class="btn btn-primary" >Usun</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

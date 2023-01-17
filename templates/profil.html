@@ -2,33 +2,30 @@
 {% load bootstrap %}
 {% block tytul %} Profil {% endblock %}
 {% block strona %}
-<div id="Profil_opis" style="clear:both; margin:10px;">
-<h1>hello {{ user }}</h1>
+<div id="Profil_opis" style= "padding: 20px; background-color: #767676; color: white;">
+<h2 style="float: right;">Jak sie masz {{ user }}?</h2>
 <a href="{% url 'edit' %}" class="btn btn-success">edytuj profil</a>
-<br>
-<h2>Twoje obrazy:</h2>
-liczba obrazów: {{obrazy.count}}
-
 </div>
-{% for Obraz in obrazy %}
+<br>
 
-<div class="card" style="width: 18rem; height: 600px; margin:10px; float: left; background-color: #f8f9fa;">
-    {% if Obraz.grafika %}
-    <a href="{% url 'opis' Obraz.id %}"><img src="{{ Obraz.grafika.url }}" class="card-img-top" alt="..."></a>
-    {% endif %}
-    <div class="card-body">
-      <h5 class="card-title">{{Obraz}}</h5>
-      <p class="card-text">{{Obraz.cena}} zł</p>
-      <p class="card-text">Autor: {{Obraz.wlasciciel}}</p>
-      <a href="{% url 'opis' Obraz.id %}" class="btn btn-success">Kup</a>
-      {% if user.is_authenticated %}
+<div class="container" style="background-color: #f6f8fa;">
+  <div class="row" >
+    {% for Obraz in obrazy %}
+    <div class="col-lg-3 col-md-4" style="margin-top: 10px;">
+      <a href="{% url 'opis' Obraz.id %}" ><img class="img-thumbnail" src="{{ Obraz.grafika.url }}" style="border: 5px double #70493d;" ></a>
+      <div class="box-element product" style="padding: 5px; margin: 5px;">
+        <h6><strong>{{Obraz}}</strong></h6>
+        <hr>
+
         
-            <a href="{% url 'edytuj' Obraz.id %}" class="btn btn-primary">edytuj</a>
-            <a href="{% url 'usun' Obraz.id %}" class="btn btn-primary">usuń</a>
-        
-      {% endif %}
+        <a class="btn btn-outline-success" href="{% url 'edytuj' Obraz.id %}">Edit</a>
+        <a class="btn btn-outline-success" href="{% url 'usun' Obraz.id %}">Delete</a>
+        <h5 style="display: inline-block; float: right"><strong>${{Obraz.cena}}</strong></h5>
+
+      </div>
     </div>
+    {% endfor %}
   </div>
-
-{% endfor %}    
+</div>
+   
 {% endblock %}

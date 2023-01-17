@@ -8,5 +8,7 @@ urlpatterns = [
     path('usun/<int:id>/', usunObraz, name='usun'),
     path('opis/<int:id>/', opisObrazu, name='opis'),
     path('profil/', profileView, name='profil'),
+    path('wiadomosci/', wiadomosciView, name='wiadomosci'),
+    path('usun_wiadomosc/<int:id>/', usunWiadomosc, name='usun_wiadomosc'),
     #path('zamowienie/<int:id>/', zlozenieZamowienia, name='zamowienie'),
 ] 
