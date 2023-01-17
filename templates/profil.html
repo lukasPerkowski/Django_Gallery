@@ -2,10 +2,16 @@
 {% load bootstrap %}
 {% block tytul %} Profil {% endblock %}
 {% block strona %}
-<div id="Profil_opis" style= "padding: 20px; background-color: #767676; color: white;">
+<div id="Profil_opis" style= "padding: 20px; background-color: #f6f8fa; color: black;">
 <h2 style="float: right;">Jak sie masz {{ user }}?</h2>
 <a href="{% url 'edit' %}" class="btn btn-success">edytuj profil</a>
 </div>
+<br>
+<br>
+<h1 style="text-align: center;">Twoje obrazy</h1>
+<hr style="width: 50%; margin: auto;">
+<br>
+<p style="text-align: center;">Posiadasz {{obrazy.count}} obrazy w Galerii</p>
 <br>
 
 <div class="container" style="background-color: #f6f8fa;">

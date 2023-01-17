@@ -4,32 +4,28 @@
 {% load bootstrap %} 
 {% block strona %}
 {% if obraz.grafika %}
-<div class="card mb-3" style="margin: 10px; background-color: #f8f9fa;">
-    <div class="row g-0">
-      <div class="col-md-4">
-        <img src="{{ obraz.grafika.url }}" class="img-fluid rounded-start" alt="image">
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">{{obraz}}</h5>
-          <p class="card-text">{{obraz.opis}}</p>
-          <p class="card-text"><small class="text-muted">{{obraz.cena}}</small></p>
-          <a href="" class="btn btn-success">Kup</a>
-        </div>
-      </div>
+<br>
+<div id="kontainer" style="margin: 10px; background-color: #f6f8fa;">
+    <img src="{{ obraz.grafika.url }}" class="img-fluid rounded-start" alt="image" style="max-height: 100vh; float: left; max-width: 40%;">
+     <div id="opis" style="margin: auto; text-align: center;">
+        <br>
+        <h1>{{obraz}}</h1>
+        <hr style="width: 50%; margin: auto;">
+        <br>
+         <p>" {{obraz.opis}} "</p>
+         <br>
+        <p>Autor: {{obraz.wlasciciel}}</p>
+        <br>
+      </div> 
     </div>
-  </div>
 {% endif %}
 
-<div class="p-10 lg:p-20 text-center">
-  <h1 class="text-3xl lg:text-6xl text-white">{{ obraz }}</h1>
-</div>
-
-<div class="card" style="padding: 10px; margin:10px 10px; background-color: #f8f9fa;">
+<br>
+<div class="card" style="padding: 10px; margin:auto; background-color: #f8f9fa; max-width: 50%;">
   <div class="card-body">
       <form method="post" enctype="multipart/form-data">
           {%csrf_token%}
-          <h1>Podoba ci się ten obraz - {{ obraz }}? Napisz do autora!</h1>
+          <h6><strong>Podoba Ci się ten obraz - {{ obraz }}? Napisz do autora!</strong></h6>
           {{form|bootstrap}}
           <button type="submit">dodaj</button>
       </form>

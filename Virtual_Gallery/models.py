@@ -14,9 +14,11 @@ class Obraz(models.Model):
 
 class Wiadomosc(models.Model):
     autor = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    imie = models.CharField(max_length=20, null=True, blank=False)
+    imie = models.CharField(verbose_name='Imię',max_length=20, null=True, blank=False)
     obraz = models.ForeignKey(Obraz, on_delete=models.CASCADE, null=True, blank=False)
-    wiadomosc = models.TextField(max_length=200,null=True, blank=False)
+    wiadomosc = models.TextField(verbose_name='Wiadomość',max_length=200,null=True, blank=False)
+    telefon = models.PositiveSmallIntegerField(blank=False, null=True)
+    proponowana_cena = models.PositiveIntegerField(verbose_name='Zaproponuj cenę',blank=True, null=True)
 
 
   

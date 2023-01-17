@@ -22,7 +22,7 @@ class EditUserForm(UserChangeForm):
 class WiadomoscForm(ModelForm):
     class Meta:
         model = Wiadomosc
-        fields = ['imie', 'wiadomosc']
+        fields = ['imie', 'wiadomosc','telefon','proponowana_cena']
 
 """""
 class ZamowienieForm(ModelForm):

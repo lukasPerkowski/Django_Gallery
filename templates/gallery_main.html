@@ -50,7 +50,7 @@
       <div class="row" >
         {% for Obraz in Obrazy %}
         <div class="col-lg-3 col-md-4" style="margin-top: 10px;">
-          <a href="{% url 'opis' Obraz.id %}" ><img class="img-thumbnail" src="{{ Obraz.grafika.url }}" ></a>
+          <a href="{% url 'opis' Obraz.id %}" ><img class="img-thumbnail" src="{{ Obraz.grafika.url }}" style="border: 5px double #70493d;"></a>
           <div class="box-element product" style="padding: 5px; margin: 5px;">
             <h6><strong>{{Obraz}}</strong></h6>
             <hr>
